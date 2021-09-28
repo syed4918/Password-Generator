@@ -6,7 +6,7 @@
 
 html,
 body,
-.wrapper {
+#gen-password-section {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -17,7 +17,7 @@ body {
   background-color: #f9fbfd;
 }
 
-.wrapper {
+#gen-password-section{
   padding-top: 30px;
   padding-left: 20px;
   padding-right: 20px;
@@ -42,7 +42,7 @@ header {
   padding: 30px 40px;
 }
 
-.card-header::after {
+#gen-password {
   content: " ";
   display: block;
   width: 100%;
