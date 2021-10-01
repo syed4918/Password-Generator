@@ -1,75 +1,57 @@
 // Assignment Code
- var generateBtn = document.querySelector("#generate");
- var minLength = 8;
- var maxLength = 128;
+var generateBtn = document.querySelector("#generate");
 
- const lower = 'q,w,e,r,t,y,i,o,p,a,s,d,f,g,h,j,k,l,z,x,c,v,b,n,m'.split("");
- const upper = lower.toUpperCase.split("");
- const number = '0123456789'.split("");
- const symbol = "!\#$%&'()*+,-./:;<=>?@[\]^_`{|}~".split("");
- const letterCase = [lower + upper].split ("");
- const all = [letterCase + number + symbol].split("");
+var lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var specialChar = ["!", "%", "&", ",", "*", "+", "-", ".", "/", "<", ">", "?","~"];
 
-
+var confirmLength ="";
+var confirmUpperCase="";
+var confirmLowercase="";
+var confirmSpecialCharacter="";
+var confirmNumbers="";
+var passwordText="";
 
 // Write password to the #password input
+
+
 function writePassword() {
+  var confirmLength = prompt("How many characters would you like for your password? 8-128");
+  var confirmUpperCase = confirm ("Select OK if you would like uppercase letters in your password.");
+  var confirmLowercase = confirm ("Select OK if you would like lowercase letters in your password.");
+  var confirmSpecialCharacter = confirm ("Select OK if you would like special characters in your password.");
+  var confirmNumbers = confirm ("Select OK if you would like numbers in your password.");
+
+  if(confirmUpperCase) {
+    passwordText = passwordText.concat(uppercase);
+  }
+  if(confirmLowercase) {
+    passwordText = passwordText.concat(lowercase);
+  }
+  if(confirmSpecialCharacter) {
+    passwordText = passwordText.concat(specialChar);
+  }
+  if(confirmNumbers) {
+    passwordText = passwordText.concat(numbers);
+  }
+
+  var passwordText ="";
+
+  for (var index = 0; index < confirmLength; index++) {
+    randomPassword = randomPassword + passwordText[Math.floor(Math.random() * characters.length)];
+    
+  }
+
+
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
-  var upperCase = confirm("Do you want uppercase letters?");
-  var lowerCase = confirm("Do you want lowercase letters in your password?");
-  var Case = confirm ("Do you want uppercase and lowercase letters?");
-  var num = confirm("Do you want numbers in your password?");
-  var special = confirm ("Do you want special characters in your password?");
-  var strongest = confirm ('Want the strongest of all passwords?')
-  
-  // This creates a local variable for the password and charPick instead of getting the DOM object with id="password"
-  let password = '';
-  let charPick = '';
-
-  //  lowercase ,uppercase, symbols and numbers are confirmed
-  if(strongest === true) {
-      charPick += all;
-  
-// uppercase, lowercase 
-    while (Case === true) {
-      charPick += letterCase;
-
-//  uppercase & lowercase + symbols
-     if(special === true) {  
-      charPick += symbol;
-    } // end if
-
-// uppercase & lowercase + numbers 
-   if (num === true) {
-      charPick += number;
-    } // end if 
-
-  } // end while
-
-// symbols & numbers combo similar to uppercase and lowercase used before  
-  while (num === true && special === true)  {
-    charPick += number;
-    charPick += symbol;
-
-// uppercase, (numbers + symbols)
-    if (upperCase === true) {
-      charPick += upper;
-    } // end if 
-
-// lowercase, (numbers + symbols)
-    if (lowerCase === true){
-      charPick += lower;
-    } // end if 
-
-  } // end while 
-
-  password += charPick[Math.floor(Math.random() * charPick.length)];
-
-} // end if 
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+document.getElementById("placeholder");
+
