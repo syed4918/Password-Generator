@@ -1,5 +1,5 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+ var generateBtn = document.querySelector("#generate");
  var minLength = 8;
  var maxLength = 128;
 
@@ -19,7 +19,6 @@ function writePassword() {
 
   passwordText.value = password;
 
-  var charLength = prompt("Please choose a length of 8 - 128 characters for your pasword.");
   var upperCase = confirm("Do you want uppercase letters?");
   var lowerCase = confirm("Do you want lowercase letters in your password?");
   var Case = confirm ("Do you want uppercase and lowercase letters?");
@@ -31,60 +30,46 @@ function writePassword() {
   let password = '';
   let charPick = '';
 
-  console.log(charLength);
-  console.log(upperCase);
-  console.log(lowerCase);
-  console.log(Case);
-  console.log(num);
-  console.log(special);
-  console.log (strongest);
+  //  lowercase ,uppercase, symbols and numbers are confirmed
+  if(strongest === true) {
+      charPick += all;
+  
+// uppercase, lowercase 
+    while (Case === true) {
+      charPick += letterCase;
 
-  //  lowercase ,uppercase, special and numbers are confirmed
-  if(strongest === true){
-    for(var i = 0; i <charLength; i++){
-      charPick = all[Math.floor(Math.random()*all.length)]
-      console.log(charPick);
-      password = password.toString()+charPick.toString();
-      console.log(password);
-    }
-  }  
-// uppercase, lowercase, and numbers 
-    else if(num = true && Case === true){
-      for(var i = 0; i <charLength; i++){
+//  uppercase & lowercase + symbols
+     if(special === true) {  
+      charPick += symbol;
+    } // end if
 
-      charPick = letterCase[Math.floor(Math.random()*letterCase.length)] + number [Math.floor(Math.random()*number.length)];
-      console.log(charPick);
-      password = password.toString()+charPick.toString();
-      console.log(password);
+// uppercase & lowercase + numbers 
+   if (num === true) {
+      charPick += number;
+    } // end if 
 
-    }
-  }
-//  uppercase, lowercase, symbols
-    else if(special === true && Case === true){
-      for(var i = 0; i <charLength; i++){
-        charPick = letterCase[Math.floor(Math.random()*letterCase.length)] + symbol [Math.floor(Math.random()*symbol.length)];
-        console.log(charPick);
-        password = password.toString()+charPick.toString();
-        console.log(password);       
-      }
+  } // end while
 
-    }
-// 
-   else if(num != true && whichCase != true){
-      for(var i = 0; i <charLength; i++){
+// symbols & numbers combo similar to uppercase and lowercase used before  
+  while (num === true && special === true)  {
+    charPick += number;
+    charPick += symbol;
 
-        charPick = characters[Math.floor(Math.random()*characters.length)];
-        console.log(charPick);
-        password = password.toString()+charPick.toString();
-        console.log(password);
+// uppercase, (numbers + symbols)
+    if (upperCase === true) {
+      charPick += upper;
+    } // end if 
 
+// lowercase, (numbers + symbols)
+    if (lowerCase === true){
+      charPick += lower;
+    } // end if 
 
-  } 
-    }
-    return password;
-}
+  } // end while 
+
+  password += charPick[Math.floor(Math.random() * charPick.length)];
+
+} // end if 
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
